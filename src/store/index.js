@@ -1,8 +1,7 @@
 import Vuex from 'vuex';
 import Vue from 'vue';
 import user from './modules/user';
-import vbdAnimal from './modules/vbdAnimal';
-import cookies from 'vue-cookies';
+import animal from './modules/animal';
 
 // Load Vuex
 Vue.use(Vuex);
@@ -11,6 +10,6 @@ Vue.use(Vuex);
 export default new Vuex.Store({
 	modules: {
 		user,
-		vbdAnimal
+		animal
 	}
 });

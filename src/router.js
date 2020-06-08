@@ -30,11 +30,6 @@ let router = new Router({
 	routes: [
 		{
 			path: '/',
-			name: 'VbdAnimalsPage',
-			component: () => import('./components/pages/VbdAnimalsPage')
-		},
-		{
-			path: '/folket',
 			name: 'AnimalsPage',
 			component: () => import('./components/pages/AnimalsPage')
 		},
@@ -45,9 +40,27 @@ let router = new Router({
 			beforeEnter: ifNotAuthenticated
 		},
 		{
+			path: '/admin',
+			name: 'AdminPage',
+			component: () => import('./components/pages/AdminPage'),
+			beforeEnter: ifAuthenticated
+		},
+		{
 			path: '/nyttdyr',
 			name: 'SubmitAnimalPage',
 			component: () => import('./components/pages/SubmitAnimalPage'),
+			beforeEnter: ifAuthenticated
+		},
+		{
+			path: '/endrepassord',
+			name: 'ChangePasswordPage',
+			component: () => import('./components/pages/ChangePasswordPage'),
+			beforeEnter: ifAuthenticated
+		},
+		{
+			path: '/stem',
+			name: 'AdminVotePage',
+			component: () => import('./components/pages/AdminVotePage'),
 			beforeEnter: ifAuthenticated
 		}
 	]

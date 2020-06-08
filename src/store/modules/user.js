@@ -1,6 +1,7 @@
 import repository from '../repository';
 import router from '../../router';
 import cookies from 'vue-cookies';
+import repo from '../repository';
 
 const state = {
 	isAuthenticated: JSON.parse(cookies.get('isAuthenticated'))
@@ -46,6 +47,24 @@ const actions = {
 		if (router.currentRoute.path !== '/') {
 			router.push('/');
 		}
+	},
+
+	async changePassword({ commit }, {newPassword, oldPassword}) {
+		return new Promise((resolve, reject) => {
+			repository.put(`/${endpoint}/changePassword`, 
+			{
+				newPassword: newPassword,
+				oldPassword: oldPassword
+			},
+			{
+				withCredentials: true
+			}
+			).then(() => {
+				resolve();
+			}).catch((error) => {
+				reject(error);
+			});
+		});
 	}
 };
 

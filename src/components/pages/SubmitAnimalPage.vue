@@ -1,10 +1,10 @@
 <template>
-	<div class="outerContainer">
-		<b-button tag="router-link" :to="{ path: '/' }" class="home-button">
+	<div class="outer-container">
+		<!-- <b-button tag="router-link" :to="{ path: '/' }" class="home-button">
 			<font-awesome-icon icon="arrow-circle-left"/>
 			Hjem
-		</b-button>
-		<div class="container">
+		</b-button> -->
+		<div class="submit-animals-container">
 			<h1 class="header">
 				Legg til et nytt dyr
 			</h1>
@@ -94,7 +94,13 @@ export default {
 </script>
 
 <style scoped>
-	.container {
+	.outer-container {
+		display: flex;
+		flex-direction: column;	
+		align-items: center;
+	}
+
+	.submit-animals-container {
 		width: 450px;
 		padding: 20px;
 		display: flex;
@@ -111,17 +117,16 @@ export default {
 		width: 100%;
 	}
 
-	
 	.save-button {
 		margin-top: 20px;
 		width: 100%;
-		background-color: #478E66;
+		background-color: #80D8C7;
 		border-radius: 5px;
 		color: white;
 	}
 
 	.save-button:hover {
-		background-color: #446E5C;
+		background-color: #59ccb6;
 		color: white;
 	}
 
@@ -147,10 +152,11 @@ export default {
 
 	.home-button {
 		margin: 10px;
+		align-self: flex-start;
 	}
 
 	@media only screen and (max-width: 600px) {
-		.container {
+		.submit-animals-container {
 			width: 100%;
 		}
 

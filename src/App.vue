@@ -1,18 +1,19 @@
 <template>
 	<div id="main-container">
+		<CustomHeader />
 		<router-view />
 	</div>
 </template>
 
 <script>
-import AppHeader from './components/layout/AppHeader';
+import CustomHeader from './components/layout/CustomHeader';
 import axios from 'axios';
 import router from './router';
 
 export default {
 	name: 'App',
 	components: {
-		AppHeader
+		CustomHeader
 	}
 }
 </script>

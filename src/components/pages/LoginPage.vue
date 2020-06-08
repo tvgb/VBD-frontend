@@ -1,23 +1,25 @@
 <template>
-	<div class="container">
-		<h1 class="header">
-			Admin logg inn for VBD
-		</h1>
+	<div class="outer-login-container">
+		<div class="login-container">
+			<h1 class="header">
+				Admin logg inn for VBD
+			</h1>
 
-		<b-field class="input-field" label="Epost">
-			<b-input v-model="email" type="email"></b-input>
-		</b-field>
+			<b-field class="input-field" label="Epost">
+				<b-input v-model="email" type="email"></b-input>
+			</b-field>
 
-		<b-field class="input-field" label="Passord">
-			<b-input v-model="password" type="password"></b-input>
-		</b-field>
+			<b-field class="input-field" label="Passord">
+				<b-input v-model="password" type="password"></b-input>
+			</b-field>
 
-		<b-button v-on:keyup.enter="startLogin()" @click="startLogin()" class="login-button"  type="is-light">
-			Logg inn
-		</b-button>
+			<b-button v-on:click.enter="startLogin()" @click="startLogin()" class="login-button" type="is-light">
+				Logg inn
+			</b-button>
 
-		<div v-if="!loginSuccessful">
-			Feil epost eller passord.
+			<div v-if="!loginSuccessful">
+				Feil epost eller passord.
+			</div>
 		</div>
 	</div>
 </template>
@@ -58,7 +60,14 @@ export default {
 </script>
 
 <style scoped>
-	.container {
+
+	.outer-login-container {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+	}
+
+	.login-container {
 		padding: 200px 20px 20px 20px;
 		display: flex;
 		flex-direction: column;
@@ -74,19 +83,23 @@ export default {
 	.login-button {
 		margin: 10px;
 		width: 100%;
-		background-color: #478E66;
+		background-color: #80D8C7;
 		border-radius: 5px;
 		color: white;
 	}
 
 	.button:hover {
-		background-color: #446E5C;
+		background-color: #59ccb6;
 		color: white;
 	}
 
 	@media only screen and (max-width: 600px) {
-		.container {
+		.login-container {
 			width: 100%;
+		}
+
+		.login-container {
+			padding: 50px 20px 20px 20px;
 		}
 	}
 

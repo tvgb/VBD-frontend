@@ -8,29 +8,8 @@
 			</b-navbar-item>
 		</template>
 
-		<template slot="end">
-			
-			<b-navbar-item v-if="isAuthenticated" tag="router-link" :to="{ path: '/profile' }">
-				<div class="buttons">
-					<a class="button">
-						<font-awesome-icon icon="user"/>
-					</a>
-				</div>
-			</b-navbar-item>
-			<b-navbar-item v-if="isAuthenticated" @click="startLogout()">
-				<div class="buttons">
-					<a class="button">
-						Logg ut
-					</a>
-				</div>
-			</b-navbar-item>
-			<b-navbar-item v-if="!isAuthenticated" tag="router-link" :to="{ path: '/login' }">
-				<div class="buttons">
-					<a class="button">
-						Logg inn
-					</a>
-				</div>
-			</b-navbar-item>
+		<template slot="end">	
+		
 		</template>
 	</b-navbar>
 </template>
