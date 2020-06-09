@@ -68,22 +68,24 @@ export default {
 		]),
 
 		onFileSelected(event) {
+			this.uploadAttemped = false;
+			this.uploadSuccesful = false;
 			this.selectedFile = event.target.files[0];
 		},
 
 		onUpload() {
 			const name = this.name;
 			const selectedFile = this.selectedFile;
-			this.uploadAttemped = true;
 
 			this.submitAnimal(
 				{ 
 					name: name, 
 					image: selectedFile 
 				}).then(() => {
-					this.uploadAttemped = false;
 					this.uploadSuccesful = true;
+					this.uploadAttemped = false;
 				}).catch(() => {
+					this.uploadAttemped = true;
 					this.uploadSuccesful = false;
 				});
 		}

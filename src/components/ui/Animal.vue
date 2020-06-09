@@ -5,7 +5,17 @@
 			<div class="image-cell row-cell">
 				<img class="image" v-bind:src="'data:image/jpeg;base64,' + animal.base64Image" />
 			</div>
-			<div class="name-cell row-cell"> {{ animal.name }} </div>
+			<div class="name-cell row-cell"> 
+				<div v-if="animalType==='FOLKET'" class="name-spacer-div">
+
+				</div>
+				<div class="name-div">
+					{{ animal.name }} 
+				</div>
+				<div v-if="animalType==='FOLKET'" class="votes-div">
+					Stemmer: {{ animal.votes.length }}
+				</div>
+			</div>
 			<div class="score-cell row-cell"> {{ animal.vesenScore }} </div>
 			<div class="score-cell row-cell"> {{ animal.overlevelsesevneScore }} </div>
 			<div class="score-cell row-cell"> {{ animal.xfactorScore }} </div>
@@ -56,21 +66,18 @@ export default {
 
 <style scoped>
 	.animal-container {
-		width: 100%;
 		margin: 10px 0;
 		background-color: #FFFFFF;
 		border-radius: 5px;
 		box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.01), 0 3px 10px 0 rgba(0, 0, 0, 0.05);
-		transition: height 1s;
 	}
 
 	.row-container {
-		width: 100%;
+		max-width: 100%;
 		height: 100px;
 		display: flex;
 		align-items: center;
 		color: #27306A;
-		padding: 0 10px;
 	}
 
 	.cursorPointer {
@@ -87,7 +94,6 @@ export default {
 		font-size: 70px;
 		text-align: center;
 		font-weight: 300;	
-		padding-left: 5px;
 		color:#10352e;
 		font-family: 'Barlow', sans-serif;
 	}
@@ -102,8 +108,15 @@ export default {
 	.name-cell {
 		width: 190px;
 		text-align: left;
-		padding: 10px;
 		font-size: 1.5em;
+	}
+
+	.name-spacer-div {
+		height: 18px;
+	}
+
+	.votes-div {
+		font-size: 0.5em;
 	}
 
 	.score-cell {
@@ -124,7 +137,6 @@ export default {
 
 	.animal-card-spacer {
 		border-bottom: solid 1px #EFEFEF;
-		margin: 10px;
 	}
 
 	@media only screen and (max-width: 600px) {
@@ -152,7 +164,15 @@ export default {
 
 		.placement-cell {
 			font-size: 40px;
-			padding: 0;
 		}
+
+		.name-spacer-div {
+			height: 14px;
+		}
+
+		.votes-div {
+			font-size: 0.6em;
+		}
+
 	}
 </style>

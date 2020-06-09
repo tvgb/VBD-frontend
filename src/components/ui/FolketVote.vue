@@ -130,7 +130,6 @@ export default {
 
 			for (const animalId of this.registeredVotes) {
 				if (animalId === this.animal._id) {
-					this.voteRegistered = true;
 					return;
 				}
 			}
@@ -146,15 +145,8 @@ export default {
 					xfactorScore: this.xfactorScore,
 					ikulturenScore: this.ikulturenScore,
 					mbvScore: this.mbvScore
-				}
-					
-				).then(() => {
-					this.voteRegistered = true;
-				}).catch((error) => {
-					if (error.response.status === 406) {
-						this.voteRegistered = true;
-					}
-				});
+				}	
+				);
 
 			}).catch((error) => {
 				return;
@@ -222,7 +214,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 	.folketvote-container {
 		width: 100%;
 	}
@@ -247,7 +239,7 @@ export default {
 	}
 
 	.score-input-spacer-div {
-		height: 22px;
+		height: 20px;
 	}
 
 	.vote-button {
@@ -265,7 +257,7 @@ export default {
 
 	.vote-registered-div {
 		text-align: center;
-		margin-bottom: 5px;
+		margin: 5px;
 	}
 
 	@media only screen and (max-width: 600px) {

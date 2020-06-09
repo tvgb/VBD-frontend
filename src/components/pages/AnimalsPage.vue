@@ -1,11 +1,20 @@
 <template>
 	<div class="outer-container">
+
+		<TopNavigation class="topnavigation" :initialSelection="animalType"/>
+		<!-- <h2 v-if="animalType === 'FOLKET'" class="info">
+			På denne siden kan du stemme på ditt favorittdyr. Trykk på dyret du ønsker å stemme på 
+			og gi en verdi fra 0 til 20 for hver kategori.
+		</h2>
+		<h2 v-else class="info">
+			På denne siden ser du en oversikt over stemmene gitt i podkasten for hvert dyr av medlemmene
+			i Verden Beste Dyr.
+		</h2> -->
+		<div v-if="noInfoText" class="noInfoTextSpacer">
+
+		</div>
+
 		<div class="animals-container">
-			<!-- <h1 class="vbd-header">
-				VERDENS BESTE DYR
-			</h1> -->
-			<TopNavigation :initialSelection="animalType"/>
-			<div class="spacer"/>
 			<TopRow />
 
 			<Animal 
@@ -32,12 +41,14 @@ export default {
 	components: {
 		Animal,
 		TopNavigation,
-		TopRow,
+		TopRow
 	},
 
 	data() {
 		return {
-			isLoading: false
+			isLoading: false,
+			aniamls: [],
+			noInfoText: true
 		}
 	},
 
@@ -84,26 +95,52 @@ export default {
 
 	.animals-container {
 		width: 660px;
-		padding: 20px;
 		display: flex;
 		flex-direction: column;
 		align-items: center;
 	}
 
+	.topnavigation {
+		margin-bottom: 10px;
+	}
+
+	.info {
+		font-size: 0.9em;
+		font-weight: 300;
+		margin-bottom: 20px;
+		width: 610px;
+	}
+
 	.spacer {
-		height: 10px;
+		height: 62px;
+	}
+
+	.noInfoTextSpacer {
+		height: 30px;
 	}
 
 	.vbd-header {
 		font-size: 2em;
 		font-weight: 300;
-		margin: 0 0 15px 0;
+		margin: 0 0 5px 0;
 		color: #27306A;
 	}
 
 	@media only screen and (max-width: 600px) {
 		.animals-container {
-			width: 100%;
+			width: 90%;
+			align-items: stretch;
+		}
+
+		.info {
+			font-size: 0.8em;
+			font-weight: 300;
+			margin-bottom: 20px;
+			width: 90%;
+		}
+
+		.noInfoTextSpacer {
+			height: 10px;
 		}
 	}
 </style>

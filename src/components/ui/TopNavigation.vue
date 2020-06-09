@@ -62,10 +62,6 @@ export default {
 </script>
 
 <style scoped>
-	.navigation-button-container {
-		margin-bottom: 20px;
-	}
-
 	.navigation-button {
 		width: 100px;
 		border: 0;

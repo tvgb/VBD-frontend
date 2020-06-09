@@ -65,11 +65,27 @@ const actions = {
 				reject(error);
 			});
 		});
+	},
+
+	async getUserId({ commit }) {
+
+		return new Promise((resolve, reject) => {
+			repository.get(`/${endpoint}/cookieuser`,
+			{
+				withCredentials: true
+			}
+			).then((response) => {
+				resolve(response.data.userId);
+			}).catch((error) => {
+				reject(error);
+			});
+		});
 	}
 };
 
 const mutations = {
-	setIsAuthenticated: (state, value) => (state.isAuthenticated = value)
+	setIsAuthenticated: (state, value) => (state.isAuthenticated = value),
+	setUser: (state, user) => (state.user = user) 
 };
 
 export default {

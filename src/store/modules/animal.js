@@ -47,6 +47,28 @@ const getters = {
 		return sortedAnimals;
 	},
 
+	vbdAnimalsNotVotedFor: (state) => (userId) => {
+		let animals = [];
+		let animalVotedFor = false;
+		
+		for (const animal of state.vbdAnimals) {
+			for (const vote of animal.votes) {
+				if (vote.user._id === userId) {
+					animalVotedFor = true;
+					break;
+				}
+			}
+
+			if (!animalVotedFor) {
+				animals.push(animal);
+			}
+
+			animalVotedFor = false;
+		}
+
+		return animals;
+	},
+
 	voteRegistered: (state) => (animalId) => {
 		for (const registeredAnimalId of state.registeredVotes) {
 			if (animalId === registeredAnimalId) {
@@ -76,7 +98,10 @@ const actions = {
 
 	async getFolketAnimals({ commit }) {
 		return new Promise((resolve, reject) => {
-			repository.get(`/${endpoint}/folket`)
+			repository.get(`/${endpoint}/folket`,
+			{
+				withCredentials: true
+			})
 			.then((response) => {
 				commit('setFolketAnimals', response.data);
 				resolve();
@@ -116,6 +141,9 @@ const actions = {
 					xfactorScore: xfactorScore,
 					ikulturenScore: ikulturenScore,
 					mbvScore: mbvScore
+				},
+				{
+					withCredentials: true
 				}
 			).then((response) => {
 				const newVote = response.data.newVote;
@@ -126,6 +154,29 @@ const actions = {
 				if (error.response.status === 406) {
 					commit('updateRegisteredVotes', animalId);
 				}
+				reject(error);
+			});
+		})
+	},
+
+	async registerVbdVote({ commit }, { animalId, vesenScore, overlevelsesevneScore, xfactorScore, ikulturenScore, mbvScore }) {
+ 
+		return new Promise((resolve, reject) => {
+			repository.post(`/${endpoint}/votevbd`, 
+				{
+					animalId: animalId,
+					vesenScore: vesenScore,
+					overlevelsesevneScore: overlevelsesevneScore,
+					xfactorScore: xfactorScore,
+					ikulturenScore: ikulturenScore,
+					mbvScore: mbvScore
+				},
+				{
+					withCredentials: true
+				}
+			).then((response) => {
+				resolve(response);
+			}).catch((error) => {
 				reject(error);
 			});
 		})
@@ -146,6 +197,14 @@ const mutations = {
 		for (const animal of state.folketAnimals) {
 			if (animal._id === animalId) {
 				animal.votes.push(newVote);
+				break;
+			}
+		}
+	},
+	updateVbdAnimals (state, {newVbdVote, vbdAnimalId}) {
+		for (const animal of state.vbdAnimals) {
+			if (animal._id === vbdAnimalId) {
+				animal.votes.push(newVbdVote);
 				break;
 			}
 		}

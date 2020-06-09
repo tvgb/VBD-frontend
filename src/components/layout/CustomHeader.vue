@@ -33,7 +33,7 @@ export default {
 
 .heading {
 	font-size: 2rem;
-	margin: 20px 5px;
+	margin: 10px 5px 0 5px;
 	font-weight: 300;
 	width: fit-content;
 	color: #191f45;

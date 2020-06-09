@@ -1,6 +1,6 @@
 <template>
 	<div class="admin-page-container">
-		<h1 class="header">
+		<h1 class="adminpage-header">
 			Admin
 		</h1>
 
@@ -11,7 +11,7 @@
 			Stem på dyr
 		</b-button>
 		<b-button class="admin-page-button" type="is-light" tag="router-link" :to="{ path: '/endrepassord' }">
-			Ende passord
+			Endre passord
 		</b-button>
 	</div>
 </template>
@@ -32,7 +32,7 @@ export default {
 		align-items: center;
 	}
 
-	.header {
+	.adminpage-header {
 		text-align: center;
 		font-size: 1.5em;
 		margin-bottom: 20px;
