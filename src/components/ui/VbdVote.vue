@@ -153,7 +153,6 @@ export default {
 						this.updateVbdAnimals({ newVbdVote, vbdAnimalId });
 					}, 3000);
 				}).catch((error) => {
-					console.log(error);
 					this.feedbackText = 'Noe gikk galt... Ta kontakt med admin.';
 					this.voteRegistered = true;
 				}
