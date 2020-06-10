@@ -139,12 +139,6 @@ export default {
 		flex-direction: column;
 	}
 
-	.header {
-		text-align: center;
-		font-size: 1.5em;
-		margin-bottom: 20px;
-	}
-
 	.image-button-container, .upload-image-button {
 		width: 100%;
 	}

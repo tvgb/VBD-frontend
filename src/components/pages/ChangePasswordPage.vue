@@ -1,6 +1,6 @@
 <template>
 	<div class="changepassword-container">
-		<h1 class="changepassword-header">
+		<h1 class="header">
 			Endre passord
 		</h1>
 
@@ -104,25 +104,19 @@ export default {
 </script>
 
 <style scoped>
-
 	.changepassword-container {
 		display: flex;
 		flex-direction: column;
 		align-items: center;
 	}
 
-	.changepassword-header {
-		text-align: center;
-		font-size: 1.5em;
-		margin-bottom: 20px;
-	}
-
 	.input-field {
 		width: 400px;
+		margin: -10px;
 	}
 
 	.newPasswordAgain {
-		margin-bottom: 50px;
+		margin-bottom: 20px;
 	}
 
 	.save-button:disabled, .save-button:disabled:hover {
@@ -130,7 +124,7 @@ export default {
 	}
 
 	.save-button {
-		margin: 10px;
+		margin: 25px 10px;
 		width: 400px;
 		background-color: #80D8C7;
 		border-radius: 5px;

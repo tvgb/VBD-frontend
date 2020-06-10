@@ -25,4 +25,18 @@ export default {
 		font-family: 'Poppins', sans-serif;
 		background-color: #F9F9F9;
 	}
+
+	.header {
+		text-align: center;
+		font-size: 1.5em;
+		margin-bottom: 20px;
+	}
+
+	@media only screen and (max-width: 600px) {
+		.header {
+			text-align: center;
+			font-size: 1.2em;
+			margin-bottom: 20px;
+		}
+	}
 </style>

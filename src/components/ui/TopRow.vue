@@ -145,6 +145,11 @@ export default {
 		.placement-cell {
 			font-size: 40px;
 		}
+
+		.total-cell {
+			padding-right: 5px;
+			color:#80D8C7;
+		}
 			
 	}
 </style>
