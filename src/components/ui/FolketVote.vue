@@ -18,8 +18,11 @@
 				<div class="score-input-spacer-div" />
 			</div>
 			<div class="score-input-container">
-				<div class="score-input-label">
-					F/A
+				<div  v-if="!onMobile" class="score-input-label">
+					Overlevelse
+				</div>
+				<div v-if="onMobile" class="score-input-label">
+					O
 				</div>
 				<b-input class="score-input"
 					size="is-small"
@@ -221,30 +224,29 @@ export default {
 
 	.vote-container {
 		width: 100%;
-		height: 80px;
+		height: 62px;
 		display: flex;
-		align-items: center;
-		padding: 0 20px;
+		align-items: flex-end;
 	}
 
 	.score-input-container {
 		display: flex;
 		flex-direction: column;
-		margin: 0 10px;
+		margin: 10px 0px 10px 20px;
 	}
 
 	.score-input-label {
-		font-size: 15px;
+		font-size: 13px;
 		text-align: center;
 	}
 
-	.score-input-spacer-div {
-		height: 20px;
+	.score-input {
+		width: 60px;
+		margin: auto;
 	}
 
 	.vote-button {
-		margin: 10px;
-		margin-left: auto;
+		margin: 10px 20px 10px auto;
 		height: 28px;
 		background-color: #80D8C7;
 		color: white;
@@ -269,15 +271,23 @@ export default {
 		.score-input-container {
 			display: flex;
 			flex-direction: column;
-			margin: 0 10px;
+			margin: 0 7px 10px 7px;
 		}
 
 		.score-input-label {
 			font-size: 12px;
 		}
 
-		.score-input-spacer-div {
-			height: 18px;
+		.score-input {
+			width: 100%;
+			margin: auto;
+		}
+
+		.vote-button {
+			margin: 10px 7px 10px auto;
+			height: 28px;
+			background-color: #80D8C7;
+			color: white;
 		}
 	}
 </style>

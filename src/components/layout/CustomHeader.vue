@@ -43,4 +43,10 @@ export default {
 	color: #80D8C7;
 	font-weight: 500;
 }
+
+@media only screen and (max-width: 600px) {
+	.heading {
+		font-size: 1.4rem;
+	}
+}
 </style>

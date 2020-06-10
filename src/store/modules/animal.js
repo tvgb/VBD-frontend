@@ -40,7 +40,7 @@ const getters = {
 			animal.xfactorScore = Math.round(xfactorScore / numberOfvotes);
 			animal.ikulturenScore = Math.round(ikulturenScore / numberOfvotes);
 			animal.mbvScore = Math.round(mbvScore / numberOfvotes);
-			animal.totalScore = Math.round(animal.vesenScore + animal.overlevelsesevneScore + animal.xfactorScore + animal.ikulturenScore + animal.mbvScore);
+			animal.totalScore = animal.vesenScore + animal.overlevelsesevneScore + animal.xfactorScore + animal.ikulturenScore + animal.mbvScore;
 		}
 
 		sortedAnimals.sort((a, b) =>  b.totalScore - a.totalScore);

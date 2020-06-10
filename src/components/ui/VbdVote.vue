@@ -21,8 +21,11 @@
 				<div class="score-input-spacer-div" />
 			</div>
 			<div class="score-input-container">
-				<div class="score-input-label">
-					F/A
+				<div v-if="!onMobile" class="score-input-label">
+					Overlevelse
+				</div>
+				<div v-if="onMobile" class="score-input-label">
+					O
 				</div>
 				<b-input class="score-input"
 					size="is-small"
@@ -170,6 +173,7 @@ export default {
 	.vbdvote-container {
 		display: flex;
 		flex-direction: column;
+		justify-content: space-between;
 		background-color: #FFFFFF;
 		border-radius: 5px;
 		box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.01), 0 3px 10px 0 rgba(0, 0, 0, 0.05);
@@ -185,11 +189,21 @@ export default {
 	}
 
 	.score-input-container {
-		margin: 10px;
+		margin: 10px 10px 10px 10px;
+	}
+
+	.score-input-label {
+		font-size: 13px;
+		text-align: center;
+	}
+
+	.score-input {
+		width: 60px;
+		margin: auto;
 	}
 
 	.animalname-div {
-		margin: 0 0 -10px 10px;
+		margin: 5px 0 -10px 10px;
 		font-size: 1.5em;
 		color: #80D8C7
 	}
@@ -198,7 +212,7 @@ export default {
 		height: 28px;
 		background-color: #80D8C7;
 		color: #FFFFFF;
-		margin: 10px 10px 10px 10px;
+		margin: 10px 10px 10px auto;
 	}
 
 	.score-input-spacer-div {
@@ -212,9 +226,11 @@ export default {
 
 	@media only screen and (max-width: 600px) {
 		.vbdvote-container {
-			width: 100%;
-			height: 100px;
-			margin: 5px 10px;
+			padding: 0 5px;
+		}
+
+		.score-input-label {
+			font-size: 12px;
 		}
 	}
 </style>

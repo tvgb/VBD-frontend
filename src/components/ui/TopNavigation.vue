@@ -100,4 +100,25 @@ export default {
 		color: white;
 	}
 
+	@media only screen and (max-width: 600px) {
+		.navigation-button {
+			width: 80px;
+			border: 0;
+			height: 30px;
+			font-size: 12px;
+			font-weight: 400;
+			letter-spacing: 1px;
+			outline: none;
+			box-shadow: none;
+		}
+
+		.not-selected {
+			border: solid 1px #80D8C7;
+			color: #80D8C7;
+			background-color: #F9F9F9;
+			cursor: pointer;
+			font-weight: 400;
+		}
+	}
+
 </style>

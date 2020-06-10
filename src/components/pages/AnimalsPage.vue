@@ -6,7 +6,7 @@
 			På denne siden kan du stemme på ditt favorittdyr. Trykk på dyret du ønsker å stemme på 
 			og gi en verdi fra 0 til 20 for hver kategori.
 		</h2>
-		<h2 v-else class="info">
+		<h2 v-else class="info" style="text-align: center">
 			Her kan du se en oversikt over stemmene gitt i podkasten til hvert av dyrene.
 		</h2>
 		<div v-if="noInfoText" class="noInfoTextSpacer">
@@ -114,7 +114,7 @@ export default {
 	.info {
 		font-size: 0.9em;
 		font-weight: 300;
-		margin-bottom: 20px;
+		height: 42px;
 		width: 610px;
 	}
 

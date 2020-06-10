@@ -12,11 +12,11 @@
 			</div>
 		</div>
 		<div class="score-cell top-row-cell">
-			<b-tooltip v-if="!isMobile" label="Forsvar/Angrep" type="is-light" class="score-tooltip toprow-tooltip">
-				F/A
+			<b-tooltip v-if="!isMobile" label="Overlevelsesevne" type="is-light" class="score-tooltip toprow-tooltip">
+				O
 			</b-tooltip>
 			<div v-else>
-				F/A
+				O
 			</div>
 		</div>
 		<div class="score-cell top-row-cell">

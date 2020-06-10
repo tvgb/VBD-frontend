@@ -96,6 +96,7 @@ export default {
 		font-weight: 300;	
 		color:#10352e;
 		font-family: 'Barlow', sans-serif;
+		padding-left: 12px;
 	}
 
 	.image-cell {
@@ -137,6 +138,7 @@ export default {
 
 	.animal-card-spacer {
 		border-bottom: solid 1px #EFEFEF;
+		margin: 0 10px;
 	}
 
 	@media only screen and (max-width: 600px) {
@@ -152,8 +154,9 @@ export default {
 			font-size: 1em;
 		}
 
-		.score-cell {
-			width: 45px;
+		.placement-cell {
+			font-size: 40px;
+			padding-left: 5px;
 		}
 
 		.image {
@@ -162,17 +165,21 @@ export default {
 			height: 43px;
 		}
 
-		.placement-cell {
-			font-size: 40px;
+		.name-div {
+			padding-left: 10px;
 		}
-
+		
 		.name-spacer-div {
 			height: 14px;
 		}
 
+		.score-cell {
+			width: 45px;
+		}		
+
 		.votes-div {
+			padding-left: 10px;
 			font-size: 0.6em;
 		}
-
 	}
 </style>
