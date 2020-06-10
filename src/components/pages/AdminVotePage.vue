@@ -1,6 +1,6 @@
 <template>
 	<div class="adminvotepage-container">
-		<h1 class="adminvotepage-header">
+		<h1 class="header">
 			Dyr du enda ikke har stemt på:
 		</h1>
 
@@ -67,13 +67,7 @@ export default {
 		flex-direction: column;
 		align-items: center;
 	}
-
-	.adminvotepage-header {
-		text-align: center;
-		font-size: 1.5em;
-		margin-bottom: 20px;
-	}
-
+	
 	.no-animals {
 		text-align: center;
 	}

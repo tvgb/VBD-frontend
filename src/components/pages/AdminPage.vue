@@ -1,6 +1,6 @@
 <template>
 	<div class="admin-page-container">
-		<h1 class="adminpage-header">
+		<h1 class="header">
 			Admin
 		</h1>
 
@@ -32,12 +32,6 @@ export default {
 		align-items: center;
 	}
 
-	.adminpage-header {
-		text-align: center;
-		font-size: 1.5em;
-		margin-bottom: 20px;
-	}
-
 	.admin-page-button {
 		background-color: #80D8C7;
 		color: white;
@@ -49,5 +43,4 @@ export default {
 		background-color: #59ccb6;
 		color: white;
 	}
-	
 </style>

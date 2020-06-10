@@ -60,7 +60,6 @@ export default {
 </script>
 
 <style scoped>
-
 	.outer-login-container {
 		display: flex;
 		flex-direction: column;

@@ -177,6 +177,11 @@ export default {
 			width: 45px;
 		}		
 
+		.total-cell {
+			padding-right: 5px;
+			color:#80D8C7;
+		}
+
 		.votes-div {
 			padding-left: 10px;
 			font-size: 0.6em;

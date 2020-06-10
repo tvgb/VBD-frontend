@@ -285,9 +285,16 @@ export default {
 
 		.vote-button {
 			margin: 10px 7px 10px auto;
+			padding: auto;
 			height: 28px;
 			background-color: #80D8C7;
 			color: white;
+		}
+
+		.vote-registered-div {
+			font-size: 0.8em;
+			text-align: center;
+			margin: 5px;
 		}
 	}
 </style>

@@ -227,10 +227,30 @@ export default {
 	@media only screen and (max-width: 600px) {
 		.vbdvote-container {
 			padding: 0 5px;
+			width: 90%;
+		}
+
+		.score-input-container {
+			display: flex;
+			flex-direction: column;
+			margin: 0 7px 10px 7px;
 		}
 
 		.score-input-label {
 			font-size: 12px;
+		}
+
+		.score-input {
+			width: 100%;
+			margin: auto;
+		}
+
+		.vote-button {
+			margin: 10px 7px 10px auto;
+			padding: auto;
+			height: 28px;
+			background-color: #80D8C7;
+			color: white;
 		}
 	}
 </style>
