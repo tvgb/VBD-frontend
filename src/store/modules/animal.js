@@ -52,6 +52,11 @@ const getters = {
 		let animalVotedFor = false;
 		
 		for (const animal of state.vbdAnimals) {
+
+			if (animal.createdBy === userId) {
+				continue;
+			}
+
 			for (const vote of animal.votes) {
 				if (vote.user._id === userId) {
 					animalVotedFor = true;
@@ -111,12 +116,13 @@ const actions = {
 		}); 
 	},
 
-	async submitAnimal({ commit }, { name, image }) {
+	async submitAnimal({ commit }, { userId, name, image }) {
 		return new Promise((resolve, reject) => {
 
 			const formData = new FormData();
 			formData.append('name', name);
 			formData.append('image', image);
+			formData.append('userId', userId);
 
 			repository.post(`/${endpoint}/`, formData,
 			{

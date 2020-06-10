@@ -8,9 +8,17 @@
 			<h1 class="header">
 				Legg til et nytt dyr
 			</h1>
+	
+			<b-field label="Dyrets representant">
+				<b-select expanded v-model="selectedUser">
+					<option v-for="user in users" :key="user._id" v-bind:value="user._id">
+						{{ user.firstName }} {{ user.lastName }}
+					</option>
+				</b-select>
+			</b-field>
 
 			<b-field class="input-field" label="Navn">
-				<b-input v-model="name"></b-input>
+				<b-input required v-model="name"></b-input>
 			</b-field>
 
 			<input style="display: none" accept="image/jpeg" ref="fileInput" type="file" @change="onFileSelected">
@@ -28,7 +36,7 @@
 			</div>
 
 
-			<b-button class="save-button" @click="onUpload">
+			<b-button :disabled="saveButtonDisabled()" class="save-button" @click="onUpload">
 				Lagre
 			</b-button>
 
@@ -48,13 +56,14 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex';
+import { mapActions, mapState } from 'vuex';
 
 export default {
 	name: 'SubmitAnimalPage',
 
 	data() {
 		return {
+			selectedUser: null,
 			name: null,
 			selectedFile: null,
 			uploadSuccesful: false,
@@ -64,8 +73,17 @@ export default {
 
 	methods: {
 		...mapActions([
-			'submitAnimal'
+			'submitAnimal',
+			'getUsers',
+			'getUserId'
 		]),
+
+		saveButtonDisabled() {
+			return this.name === null ||
+			this.name === '' ||
+			this.selectedFile === null ||
+			this.selectedUser === null
+		},
 
 		onFileSelected(event) {
 			this.uploadAttemped = false;
@@ -74,13 +92,12 @@ export default {
 		},
 
 		onUpload() {
-			const name = this.name;
-			const selectedFile = this.selectedFile;
 
 			this.submitAnimal(
-				{ 
-					name: name, 
-					image: selectedFile 
+				{
+					userId: this.selectedUser,
+					name: this.name, 
+					image: this.selectedFile
 				}).then(() => {
 					this.uploadSuccesful = true;
 					this.uploadAttemped = false;
@@ -89,8 +106,21 @@ export default {
 					this.uploadSuccesful = false;
 				});
 		}
-	}
+	},
 
+	computed: {
+		...mapState({
+			users: state => state.user.users,
+			userId: state => state.user.userId
+		})
+	},
+
+	created() {
+		this.getUsers();
+		this.getUserId().then((userId) => {
+			this.selectedUser = userId
+		});
+	}
 
 }
 </script>

@@ -2,20 +2,23 @@
 	<div class="outer-container">
 
 		<TopNavigation class="topnavigation" :initialSelection="animalType"/>
-		<!-- <h2 v-if="animalType === 'FOLKET'" class="info">
+		<h2 v-if="animalType === 'FOLKET'" class="info">
 			På denne siden kan du stemme på ditt favorittdyr. Trykk på dyret du ønsker å stemme på 
 			og gi en verdi fra 0 til 20 for hver kategori.
 		</h2>
 		<h2 v-else class="info">
-			På denne siden ser du en oversikt over stemmene gitt i podkasten for hvert dyr av medlemmene
-			i Verden Beste Dyr.
-		</h2> -->
+			Her kan du se en oversikt over stemmene gitt i podkasten til hvert av dyrene.
+		</h2>
 		<div v-if="noInfoText" class="noInfoTextSpacer">
 
 		</div>
 
 		<div class="animals-container">
-			<TopRow />
+			<TopRow v-if="sortedAnimals(animalType).length > 0" />
+
+			<div v-else class="no-animals-div">
+				Ingen dyr har blitt registrert enda.
+			</div>
 
 			<Animal 
 				v-for="(animal, index) in sortedAnimals(animalType)"
@@ -102,6 +105,10 @@ export default {
 
 	.topnavigation {
 		margin-bottom: 10px;
+	}
+
+	.no-animals-div {
+		text-align: center;
 	}
 
 	.info {

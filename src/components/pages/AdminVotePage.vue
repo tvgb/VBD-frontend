@@ -6,9 +6,11 @@
 
 		<VbdVote v-for="animal in animals" :key="animal._id" :animal="animal"/>
 			
-		<div v-if="animals.length === 0" class="no-animals">
+		<div v-if="animals.length === 0 && !isLoading" class="no-animals">
 			Du har ikke flere dyr igjen å stemme på.
 		</div>
+
+		<b-loading :is-full-page="true" :active.sync="isLoading" ></b-loading>
 	</div>
 </template>
 
@@ -26,15 +28,15 @@ export default {
 	data() {
 		return {
 			userId: null,
-			animals: []
-
+			animals: [],
+			isLoading: false
 		}
 	},
 
 	computed: {
 		...mapGetters([
 			'vbdAnimalsNotVotedFor'
-		]),
+		])
 	},
 
 	methods: {
@@ -45,11 +47,14 @@ export default {
 	},
 
 	created() {
+		
+		this.isLoading = true;
 		this.onMobile = window.innerWidth < 600;
 
 		this.getVbdAnimals().then(() => {
 			this.getUserId().then((userId) => {
 			this.animals = this.vbdAnimalsNotVotedFor(userId);
+			this.isLoading = false;
 			});
 		})
 	}

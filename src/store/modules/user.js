@@ -4,7 +4,9 @@ import cookies from 'vue-cookies';
 import repo from '../repository';
 
 const state = {
-	isAuthenticated: JSON.parse(cookies.get('isAuthenticated'))
+	isAuthenticated: JSON.parse(cookies.get('isAuthenticated')),
+	users: [],
+	userId: null
 };
 
 const getters = {
@@ -75,17 +77,32 @@ const actions = {
 				withCredentials: true
 			}
 			).then((response) => {
+				commit('setUserId', response.data.userId);
 				resolve(response.data.userId);
 			}).catch((error) => {
 				reject(error);
 			});
 		});
+	},
+
+	async getUsers({ commit }) {
+		try {
+			const response = await repository.get(`/${endpoint}/`, 
+			{
+				withCredentials: true
+			});
+
+			commit('setUsers', response.data);
+		} catch (error) {
+			commit('setUsers', []);	
+		}
 	}
 };
 
 const mutations = {
 	setIsAuthenticated: (state, value) => (state.isAuthenticated = value),
-	setUser: (state, user) => (state.user = user) 
+	setUserId: (state, userId) => (state.userId = userId),
+	setUsers: (state, users) => (state.users = users)
 };
 
 export default {
