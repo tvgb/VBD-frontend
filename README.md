@@ -1,4 +1,4 @@
-# rfgk-frontend-2.0
+# Verdens beste dyr
 
 ## Project setup
 ```
