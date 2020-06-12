@@ -3,7 +3,7 @@
 		<div class="placement-cell top-row-cell"></div>
 		<div class="image-cell top-row-cell"></div>
 		<div class="name-cell top-row-cell"></div>
-		<div class="score-cell top-row-cell">
+		<div @click="setSortedBy('vesenScore')" class="score-cell top-row-cell" :class="{'sortedby': sortedBy === 'vesenScore'}">
 			<b-tooltip v-if="!isMobile" label="Vesen" type="is-light" class="score-tooltip toprow-tooltip">
 				V
 			</b-tooltip>
@@ -11,7 +11,7 @@
 				V
 			</div>
 		</div>
-		<div class="score-cell top-row-cell">
+		<div @click="setSortedBy('overlevelsesevneScore')" class="score-cell top-row-cell" :class="{'sortedby': sortedBy === 'overlevelsesevneScore'}">
 			<b-tooltip v-if="!isMobile" label="Overlevelsesevne" type="is-light" class="score-tooltip toprow-tooltip">
 				O
 			</b-tooltip>
@@ -19,7 +19,7 @@
 				O
 			</div>
 		</div>
-		<div class="score-cell top-row-cell">
+		<div @click="setSortedBy('xfactorScore')" class="score-cell top-row-cell" :class="{'sortedby': sortedBy === 'xfactorScore'}">
 			<b-tooltip v-if="!isMobile" label="X-faktor" type="is-light" class="score-tooltip toprow-tooltip">
 				X
 			</b-tooltip>
@@ -27,7 +27,7 @@
 				X
 			</div>
 		</div>
-		<div class="score-cell top-row-cell">
+		<div @click="setSortedBy('ikulturenScore')" class="score-cell top-row-cell" :class="{'sortedby': sortedBy === 'ikulturenScore'}">
 			<b-tooltip v-if="!isMobile" label="I kulturen" type="is-light" class="score-tooltip toprow-tooltip">
 				K
 			</b-tooltip>
@@ -35,7 +35,7 @@
 				K
 			</div>
 		</div>
-		<div class="score-cell top-row-cell">
+		<div @click="setSortedBy('mbvScore')" class="score-cell top-row-cell" :class="{'sortedby': sortedBy === 'mbvScore'}">
 			<b-tooltip v-if="!isMobile" label="Menneskets beste venn" type="is-light" class="score-tooltip toprow-tooltip">
 				M
 			</b-tooltip>
@@ -43,7 +43,7 @@
 				M
 			</div>
 		</div>
-		<div class="total-cell top-row-cell">
+		<div @click="setSortedBy('totalScore')" class="total-cell top-row-cell" :class="{'sortedby': sortedBy === 'totalScore'}">
 			<b-tooltip v-if="!isMobile" label="Total sum" type="is-light" class="total-tooltip toprow-tooltip">
 				&Sigma;
 			</b-tooltip>
@@ -55,6 +55,8 @@
 </template>
 
 <script>
+import { mapMutations, mapState } from 'vuex';
+
 export default {
 	name: 'TopRow',
 
@@ -68,6 +70,18 @@ export default {
 		}
 	},
 
+	computed: {
+		...mapState({
+			sortedBy: state => state.animal.sortedBy
+		})
+	},
+
+	methods: {
+		...mapMutations([
+			'setSortedBy'
+		])
+	},
+
 	created() {
 		this.isMobile = window.innerWidth < 600;
 	}
@@ -77,6 +91,7 @@ export default {
 <style scoped>
 	.top-row-container {
 		height: 40px;
+		width: 100%;
 		display: flex;
 	}
 
@@ -84,6 +99,7 @@ export default {
 		font-size: 1.4em;
 		text-align: center;
 		color: #27306A;
+		cursor: pointer;
 	}
 
 	.toprow-tooltip {
@@ -103,23 +119,26 @@ export default {
 	}
 
 	.placement-cell {
-		width: 70px;
+		width: 10%;
 	}
 
 	.image-cell {
-		width: 100px;
+		width: 17%;
 	}
 
 	.name-cell {
-		width: 190px;
+		width: 33%;
 	}
 
 	.score-cell {
-		width: 40px;
+		width: 6%;
 	}
 
 	.total-cell {
-		width: 60px;
+		width: 10%
+	}
+
+	.sortedby {
 		color:#80D8C7;
 	}
 
@@ -132,24 +151,9 @@ export default {
 			font-size: 1em;
 		}
 
-		.score-cell {
-			width: 45px;
-		}
-
 		.image {
-			border-radius: 50%;
 			width: 43px;
 			height: 43px;
 		}
-
-		.placement-cell {
-			font-size: 40px;
-		}
-
-		.total-cell {
-			padding-right: 5px;
-			color:#80D8C7;
-		}
-			
 	}
 </style>

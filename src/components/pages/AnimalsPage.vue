@@ -6,8 +6,9 @@
 			På denne siden kan du stemme på ditt favorittdyr. Trykk på dyret du ønsker å stemme på 
 			og gi en verdi fra 0 til 20 for hver kategori.
 		</h2>
-		<h2 v-else class="info" style="text-align: center">
-			Her kan du se en oversikt over stemmene gitt i podkasten til hvert av dyrene.
+		<h2 v-else class="info">
+			Her kan du se en oversikt over stemmene gitt i podkasten til hvert av dyrene. Du kan
+			trykke på et dyr for å se de ulike stemmene.
 		</h2>
 		<div v-if="noInfoText" class="noInfoTextSpacer">
 
@@ -16,12 +17,12 @@
 		<div class="animals-container">
 			<TopRow v-if="sortedAnimals(animalType).length > 0" />
 
-			<div v-else class="no-animals-div">
+			<div v-else-if="!isLoading" class="no-animals-div">
 				Ingen dyr har blitt registrert enda.
 			</div>
 
 			<Animal 
-				v-for="(animal, index) in sortedAnimals(animalType)"
+				v-for="(animal, index) in sortedAnimals(animalType, sortedBy)"
 				:key="animal._id"
 				:animal="animal"
 				:index="index" />
@@ -64,7 +65,8 @@ export default {
 
 	computed: {
 		...mapState({
-			animalType: state => state.animal.animalType
+			animalType: state => state.animal.animalType,
+			sortedBy: state => state.animal.sortedBy
 		}),
 
 		...mapGetters([

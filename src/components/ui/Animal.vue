@@ -1,6 +1,6 @@
 <template>
 	<div class="animal-container">
-		<div @click="toggleVoteRow" class="row-container" :class="{cursorPointer: animalType === 'FOLKET'}">
+		<div @click="toggleVoteRow" class="row-container">
 			<div class="placement-cell row-cell"> {{ index + 1}} </div>
 			<div class="image-cell row-cell">
 				<img class="image" v-bind:src="'data:image/jpeg;base64,' + animal.base64Image" />
@@ -16,27 +16,36 @@
 					Stemmer: {{ animal.votes.length }}
 				</div>
 			</div>
-			<div class="score-cell row-cell"> {{ animal.vesenScore }} </div>
-			<div class="score-cell row-cell"> {{ animal.overlevelsesevneScore }} </div>
-			<div class="score-cell row-cell"> {{ animal.xfactorScore }} </div>
-			<div class="score-cell row-cell"> {{ animal.ikulturenScore }} </div>
-			<div class="score-cell row-cell"> {{ animal.mbvScore }} </div>
-			<div class="total-cell row-cell"> {{ animal.totalScore }} </div>
+			<div class="score-cell row-cell" :class="{'sortedby': sortedBy === 'vesenScore'}"> {{ animal.vesenScore }} </div>
+			<div class="score-cell row-cell" :class="{'sortedby': sortedBy === 'overlevelsesevneScore'}"> {{ animal.overlevelsesevneScore }} </div>
+			<div class="score-cell row-cell" :class="{'sortedby': sortedBy === 'xfactorScore'}"> {{ animal.xfactorScore }} </div>
+			<div class="score-cell row-cell" :class="{'sortedby': sortedBy === 'ikulturenScore'}"> {{ animal.ikulturenScore }} </div>
+			<div class="score-cell row-cell" :class="{'sortedby': sortedBy === 'mbvScore'}"> {{ animal.mbvScore }} </div>
+			<div class="total-cell row-cell" :class="{'sortedby': sortedBy === 'totalScore'}"> {{ animal.totalScore }} </div>
 		</div>
+
+		<!-- Shown if folket vote is selected -->
 		<div v-if="voteExpanded && animalType==='FOLKET'" class="animal-card-spacer" />
-		<FolketVote :animal="animal" v-if="voteExpanded" />
+		<FolketVote :animal="animal" v-if="voteExpanded && animalType==='FOLKET'" />
+
+		<!-- Shown if vbd vote is selected -->
+		<div v-if="voteExpanded && animalType==='VBD'" class="animal-card-spacer" />
+		<VbdVotesList :animal="animal" v-if="voteExpanded && animalType==='VBD'" />
+
 	</div>
 </template>
 
 <script>
 import { mapState } from 'vuex';
 import FolketVote from './FolketVote';
+import VbdVotesList from './VbdVotesList';
 
 export default {
 	name: 'Animal',
 
 	components: {
-		FolketVote
+		FolketVote,
+		VbdVotesList
 	},
 
 	props: [
@@ -52,7 +61,8 @@ export default {
 
 	computed: {
 		...mapState({
-			animalType: state => state.animal.animalType
+			animalType: state => state.animal.animalType,
+			sortedBy: state =>  state.animal.sortedBy
 		})
 	},
 
@@ -70,17 +80,15 @@ export default {
 		background-color: #FFFFFF;
 		border-radius: 5px;
 		box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.01), 0 3px 10px 0 rgba(0, 0, 0, 0.05);
+		width: 100%;
 	}
 
 	.row-container {
-		max-width: 100%;
+		width: 100%;
 		height: 100px;
 		display: flex;
 		align-items: center;
 		color: #27306A;
-	}
-
-	.cursorPointer {
 		cursor: pointer;
 	}
 
@@ -90,26 +98,27 @@ export default {
 	}
 
 	.placement-cell {
-		width: 70px;
+		width: 10%;
 		font-size: 70px;
 		text-align: center;
 		font-weight: 300;	
 		color:#10352e;
 		font-family: 'Barlow', sans-serif;
-		padding-left: 12px;
+		padding-left: 3%;
 	}
 
 	.image-cell {
-		width: 100px;
+		width: 17%;
 		display: flex;
 		flex-direction: column;
 		align-items: center;
 	}
 
 	.name-cell {
-		width: 190px;
+		width: 33%;
 		text-align: left;
-		font-size: 1.5em;
+		font-size: 1.8em;
+		padding-left: 2%;
 	}
 
 	.name-spacer-div {
@@ -121,11 +130,14 @@ export default {
 	}
 
 	.score-cell {
-		width: 40px;
+		width: 6%;
 	}
 
 	.total-cell {
-		width: 60px;
+		width: 10%;
+	}
+
+	.sortedby {
 		color:#80D8C7;
 	}
 
@@ -145,46 +157,27 @@ export default {
 		.animal-container {
 			margin: 0 0 10px 0;
 		}
-
+		
 		.row-container {
 			height: 60px;
 		}
+		
 
 		.row-cell {
 			font-size: 1em;
 		}
+		
 
 		.placement-cell {
 			font-size: 40px;
 			padding-left: 5px;
 		}
+		
 
 		.image {
 			border-radius: 50%;
 			width: 43px;
 			height: 43px;
-		}
-
-		.name-div {
-			padding-left: 10px;
-		}
-		
-		.name-spacer-div {
-			height: 14px;
-		}
-
-		.score-cell {
-			width: 45px;
-		}		
-
-		.total-cell {
-			padding-right: 5px;
-			color:#80D8C7;
-		}
-
-		.votes-div {
-			padding-left: 10px;
-			font-size: 0.6em;
 		}
 	}
 </style>
