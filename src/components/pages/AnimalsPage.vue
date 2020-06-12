@@ -21,7 +21,7 @@
 			</div>
 
 			<Animal 
-				v-for="(animal, index) in sortedAnimals(animalType)"
+				v-for="(animal, index) in sortedAnimals(animalType, sortedBy)"
 				:key="animal._id"
 				:animal="animal"
 				:index="index" />
@@ -64,7 +64,8 @@ export default {
 
 	computed: {
 		...mapState({
-			animalType: state => state.animal.animalType
+			animalType: state => state.animal.animalType,
+			sortedBy: state => state.animal.sortedBy
 		}),
 
 		...mapGetters([

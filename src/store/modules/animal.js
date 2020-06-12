@@ -4,11 +4,12 @@ const state = {
 	vbdAnimals: [],
 	folketAnimals: [],
 	registeredVotes: JSON.parse(localStorage.getItem('registeredVotes')) || [],
-	animalType: localStorage.getItem('animalType') || 'VBD'
+	animalType: localStorage.getItem('animalType') || 'VBD',
+	sortedBy: 'totalScore'
 };
 
 const getters = {
-	sortedAnimals: (state) => (type) => {
+	sortedAnimals: (state) => (type, sortedBy) => {
 		let sortedAnimals = null;
 
 		if (type === 'VBD') {
@@ -43,7 +44,31 @@ const getters = {
 			animal.totalScore = animal.vesenScore + animal.overlevelsesevneScore + animal.xfactorScore + animal.ikulturenScore + animal.mbvScore;
 		}
 
-		sortedAnimals.sort((a, b) =>  b.totalScore - a.totalScore);
+		switch(sortedBy) {
+			case 'vesenScore':
+				sortedAnimals.sort((a, b) =>  b.vesenScore - a.vesenScore);
+				break;
+
+			case 'overlevelsesevneScore':
+				sortedAnimals.sort((a, b) =>  b.overlevelsesevneScore - a.overlevelsesevneScore);
+				break;
+
+			case 'xfactorScore':
+				sortedAnimals.sort((a, b) =>  b.xfactorScore - a.xfactorScore);
+				break;
+
+			case 'ikulturenScore':
+				sortedAnimals.sort((a, b) =>  b.ikulturenScore - a.ikulturenScore);
+				break;
+
+			case 'mbvScore':
+				sortedAnimals.sort((a, b) =>  b.mbvScore - a.mbvScore);
+				break;
+
+			default:
+				sortedAnimals.sort((a, b) =>  b.totalScore - a.totalScore);
+		}
+
 		return sortedAnimals;
 	},
 
@@ -190,13 +215,13 @@ const actions = {
 };
 
 const mutations = {
-	setVbdAnimals (state, vbdAnimals) {
+	setVbdAnimals(state, vbdAnimals) {
 		state.vbdAnimals = vbdAnimals;
 	},
 	setFolketAnimals (state, folketAnimals) {
 		state.folketAnimals = folketAnimals;
 	},
-	updateFolketAnimals (state, {newVote, animalId}) {
+	updateFolketAnimals(state, {newVote, animalId}) {
 		state.registeredVotes.push(animalId);
 		localStorage.setItem('registeredVotes', JSON.stringify(state.registeredVotes));
 
@@ -207,7 +232,7 @@ const mutations = {
 			}
 		}
 	},
-	updateVbdAnimals (state, {newVbdVote, vbdAnimalId}) {
+	updateVbdAnimals(state, {newVbdVote, vbdAnimalId}) {
 		for (const animal of state.vbdAnimals) {
 			if (animal._id === vbdAnimalId) {
 				animal.votes.push(newVbdVote);
@@ -215,11 +240,11 @@ const mutations = {
 			}
 		}
 	},
-	setAnimalType (state, type) { 
+	setAnimalType(state, type) { 
 		state.animalType = type;
 		localStorage.setItem('animalType', state.animalType);
 	},
-	updateRegisteredVotes (state, animalId) {
+	updateRegisteredVotes(state, animalId) {
 		for (const registeredAnimalId of state.registeredVotes) {
 			if (registeredAnimalId === animalId) {
 				return;
@@ -227,6 +252,9 @@ const mutations = {
 		}
 		state.registeredVotes.push(animalId);
 		localStorage.setItem('registeredVotes', JSON.stringify(state.registeredVotes));
+	},
+	setSortedBy(state, sortedBy) {
+		state.sortedBy = sortedBy;
 	}
 };
 

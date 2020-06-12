@@ -16,12 +16,12 @@
 					Stemmer: {{ animal.votes.length }}
 				</div>
 			</div>
-			<div class="score-cell row-cell"> {{ animal.vesenScore }} </div>
-			<div class="score-cell row-cell"> {{ animal.overlevelsesevneScore }} </div>
-			<div class="score-cell row-cell"> {{ animal.xfactorScore }} </div>
-			<div class="score-cell row-cell"> {{ animal.ikulturenScore }} </div>
-			<div class="score-cell row-cell"> {{ animal.mbvScore }} </div>
-			<div class="total-cell row-cell"> {{ animal.totalScore }} </div>
+			<div class="score-cell row-cell" :class="{'sortedby': sortedBy === 'vesenScore'}"> {{ animal.vesenScore }} </div>
+			<div class="score-cell row-cell" :class="{'sortedby': sortedBy === 'overlevelsesevneScore'}"> {{ animal.overlevelsesevneScore }} </div>
+			<div class="score-cell row-cell" :class="{'sortedby': sortedBy === 'xfactorScore'}"> {{ animal.xfactorScore }} </div>
+			<div class="score-cell row-cell" :class="{'sortedby': sortedBy === 'ikulturenScore'}"> {{ animal.ikulturenScore }} </div>
+			<div class="score-cell row-cell" :class="{'sortedby': sortedBy === 'mbvScore'}"> {{ animal.mbvScore }} </div>
+			<div class="total-cell row-cell" :class="{'sortedby': sortedBy === 'totalScore'}"> {{ animal.totalScore }} </div>
 		</div>
 		<div v-if="voteExpanded && animalType==='FOLKET'" class="animal-card-spacer" />
 		<FolketVote :animal="animal" v-if="voteExpanded" />
@@ -52,7 +52,8 @@ export default {
 
 	computed: {
 		...mapState({
-			animalType: state => state.animal.animalType
+			animalType: state => state.animal.animalType,
+			sortedBy: state =>  state.animal.sortedBy
 		})
 	},
 
@@ -126,6 +127,9 @@ export default {
 
 	.total-cell {
 		width: 60px;
+	}
+
+	.sortedby {
 		color:#80D8C7;
 	}
 
