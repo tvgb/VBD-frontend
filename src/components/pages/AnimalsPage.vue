@@ -17,7 +17,7 @@
 		<div class="animals-container">
 			<TopRow v-if="sortedAnimals(animalType).length > 0" />
 
-			<div v-else class="no-animals-div">
+			<div v-else-if="!isLoading" class="no-animals-div">
 				Ingen dyr har blitt registrert enda.
 			</div>
 
