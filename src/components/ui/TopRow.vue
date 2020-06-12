@@ -91,6 +91,7 @@ export default {
 <style scoped>
 	.top-row-container {
 		height: 40px;
+		width: 100%;
 		display: flex;
 	}
 
@@ -118,23 +119,23 @@ export default {
 	}
 
 	.placement-cell {
-		width: 70px;
+		width: 10%;
 	}
 
 	.image-cell {
-		width: 100px;
+		width: 17%;
 	}
 
 	.name-cell {
-		width: 190px;
+		width: 33%;
 	}
 
 	.score-cell {
-		width: 40px;
+		width: 6%;
 	}
 
 	.total-cell {
-		width: 60px;
+		width: 10%
 	}
 
 	.sortedby {
@@ -150,24 +151,9 @@ export default {
 			font-size: 1em;
 		}
 
-		.score-cell {
-			width: 45px;
-		}
-
 		.image {
-			border-radius: 50%;
 			width: 43px;
 			height: 43px;
 		}
-
-		.placement-cell {
-			font-size: 40px;
-		}
-
-		.total-cell {
-			padding-right: 5px;
-			color:#80D8C7;
-		}
-			
 	}
 </style>

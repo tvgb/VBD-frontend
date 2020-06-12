@@ -6,8 +6,9 @@
 			På denne siden kan du stemme på ditt favorittdyr. Trykk på dyret du ønsker å stemme på 
 			og gi en verdi fra 0 til 20 for hver kategori.
 		</h2>
-		<h2 v-else class="info" style="text-align: center">
-			Her kan du se en oversikt over stemmene gitt i podkasten til hvert av dyrene.
+		<h2 v-else class="info">
+			Her kan du se en oversikt over stemmene gitt i podkasten til hvert av dyrene. Du kan
+			trykke på et dyr for å se de ulike stemmene.
 		</h2>
 		<div v-if="noInfoText" class="noInfoTextSpacer">
 
