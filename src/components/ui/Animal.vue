@@ -161,23 +161,28 @@ export default {
 		.row-container {
 			height: 60px;
 		}
-		
 
-		.row-cell {
-			font-size: 1em;
+		.name-spacer-div {
+			height: 9px;
 		}
 		
+		.row-cell {
+			font-size: 18px;
+		}
+	
+		.name-cell {
+			font-size: 14px;
+		}
 
 		.placement-cell {
-			font-size: 40px;
+			font-size: 30px;
 			padding-left: 5px;
 		}
-		
 
 		.image {
 			border-radius: 50%;
-			width: 43px;
-			height: 43px;
+			width: 38px;
+			height: 38px;
 		}
 	}
 </style>
