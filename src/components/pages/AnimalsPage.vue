@@ -99,7 +99,7 @@ export default {
 	}
 
 	.animals-container {
-		width: 660px;
+		width: 800px;
 		display: flex;
 		flex-direction: column;
 		align-items: center;
