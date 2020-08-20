@@ -167,16 +167,12 @@ export default {
 		}
 		
 		.row-cell {
-			font-size: 18px;
-		}
-	
-		.name-cell {
 			font-size: 14px;
 		}
 
 		.placement-cell {
-			font-size: 30px;
-			padding-left: 5px;
+			font-size: 22px;
+			padding-left: 0px;
 		}
 
 		.image {
