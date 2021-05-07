@@ -17,7 +17,7 @@
     "dotenv": "^8.2.0",
     "fingerprintjs2": "^2.1.0",
     "google-fonts-webpack-plugin": "^0.4.4",
-    "ua-parser-js": "^0.7.21",
+    "ua-parser-js": "^0.7.24",
     "vue": "^2.6.11",
     "vue-cookies": "^1.7.0",
     "vue-moment": "^4.1.0",
